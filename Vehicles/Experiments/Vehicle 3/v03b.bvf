@@ -1,0 +1,118 @@
+# Simulator configuration file for Vehicle 3a
+
+simulation
+{
+	name				"Vehicle 3a"
+#	win_size			1000 800
+	camera	-7.0 0.0 3.0 0.0 0.0
+	
+	#Create a field	
+	field
+	{
+		size 120.0
+		Brownian 0.0
+		
+		light
+		{
+			colour 1.0 1.0 1.0
+			radius	1.0
+			brightness 40.0
+			attenuation "square"
+			place_at
+			{
+				position	10.0 0.0 1.0
+			}
+			place_at
+			{
+				position	20.0 10.0 1.0
+			}
+			place_at
+			{
+				position	30.0 -20.0 1.0
+			}
+			place_at
+			{
+				position	40.0 5.0 1.0
+			}
+			place_at
+			{
+				position	-30.0 -20.0 1.0
+			}
+			place_at
+			{
+				position	-20.0 -15.0 1.0
+			}
+
+		}
+
+		vehicle
+		{
+			size	1.0
+			mass	2.0
+			viscous_friction 1.0
+			Coulomb_friction 0.0
+			colour 0.5 0.5 1.0
+			sensor
+			{
+				name "sensors"
+				mode "light"
+				colour 1.0 1.0 1.0
+				place_at
+				{
+					position	0.5 -0.5 0.5
+				}
+				place_at
+				{
+					position	0.5 0.5 0.5
+				}
+			}
+			brain
+			{
+				name "brains"
+				num_outputs		2
+				bias			10.0 10.0
+				weights
+				{
+					input		"sensors"
+					weights		0.0 -12.0 -12.0 0.0
+				}
+			}
+			drive
+			{
+				input "brains"
+				gain 0.5
+				lateral_grip "false"
+				place_at
+				{
+					position	-0.5 -0.5
+					angle		0.0
+				}
+				place_at
+				{
+					position	-0.5 0.5
+					angle		0.0
+				}
+			}
+			place_at
+			{
+				position 0.0 0.0
+				angle 0.0
+			}
+			place_at
+			{
+				position 10.0 10.0
+				angle 0.0
+			}
+			place_at
+			{
+				position 7.0 -15.0
+				angle 0.0
+			}
+		}
+	}
+}
+			
+			
+
+
+

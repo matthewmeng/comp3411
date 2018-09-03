@@ -1,0 +1,364 @@
+# Simulator configuration file for Vehicle 3c
+
+simulation
+{
+	name				"Vehicle 3c"
+#	win_size			800 600
+	paused				"false"
+    real_time           "true"
+	camera	40.0 -40.0 3.0 10.0 135.0
+	
+	#Create a field	
+	field
+	{
+		size 200.0
+		Brownian 0.0
+
+		light
+		{
+			colour 1.0 1.0 1.0
+			radius 0.1
+			brightness 30.0
+			attenuation "linear"
+			place_at
+			{
+				position	0.0 0.0 50.0
+			}
+		}
+
+		light
+		{
+			colour 1.0 1.0 0.0
+			radius	1.0
+			brightness 50.0
+			attenuation "square"
+			place_at
+			{
+				position	10.0 0.0 1.0
+			}
+		}
+
+		light
+		{
+			colour 1.0 0.0 0.0
+			radius	0.5
+			brightness 10.0
+			attenuation "linear"
+			place_at
+			{
+				position	10.0 0.0 1.0
+			}
+		}
+
+		light
+		{
+			colour 0.0 1.0 0.0
+			radius	0.5
+			brightness 50.0
+			attenuation "square"
+			place_at
+			{
+				position	30.0 30.0 10.0
+			}
+			place_at
+			{
+				position	-5.0 -30.0 10.0
+			}
+		}
+
+		light
+		{
+			colour 0.0 0.0 1.0
+			radius	0.5
+			brightness 50.0
+			attenuation "square"
+			place_at
+			{
+				position	5.0 -30.0 10.0
+			}
+			place_at
+			{
+				position	-30.0 30.0 10.0
+			}
+		}
+		
+		vehicle
+		{
+			size	1.0
+			mass	2.0
+			viscous_friction 1.0
+			Coulomb_friction 0.0
+			colour 0.5 0.5 1.0
+			sensor
+			{
+				name "light sensors"
+				mode "light"
+				colour 1.0 1.0 0.0
+				width 20.0
+				place_at
+				{
+					position	0.5 0.0 0.5
+					angle		-5.0
+
+				}
+				place_at
+				{
+					position	0.5 0.0 0.5
+					angle		5.0
+				}
+			}
+
+			sensor
+			{
+				name "heat sensors"
+				mode "light"
+				colour 1.0 0.0 0.0
+				place_at
+				{
+					position	0.5 -0.5 0.5
+				}
+				place_at
+				{
+					position	0.5 0.5 0.5
+				}
+			}
+
+			sensor
+			{
+				name "oxygen sensors"
+				mode "light"
+				colour 0.0 0.0 1.0
+				place_at
+				{
+					position	0.5 -0.5 0.5
+				}
+				place_at
+				{
+					position	0.5 0.5 0.5
+				}
+			}
+
+			sensor
+			{
+				name "organic sensors"
+				mode "light"
+				colour 0.0 1.0 0.0
+				place_at
+				{
+					position	0.5 -0.5 0.5
+				}
+				place_at
+				{
+					position	0.5 0.5 0.5
+				}
+			}
+
+			sensor
+			{
+				name "blue vehicle sensors"
+				mode "vehicle"
+				colour 0.5 0.5 1.0
+				width 0.0
+				place_at
+				{
+					position	0.5 -0.5 0.5
+				}
+				place_at
+				{
+					position	0.5 0.5 0.5
+				}
+			}
+			sensor
+			{
+				name "red vehicle sensors"
+				mode "vehicle"
+				colour 1.0 0.0 0.0
+				place_at
+				{
+					position	0.5 -0.5 0.5
+				}
+				place_at
+				{
+					position	0.5 0.5 0.5
+				}
+			}
+
+			brain
+			{
+				name "brains"
+				num_outputs		2
+				bias			15.0 15.0
+				time_constant 		0.1
+				weights
+				{
+					input		"light sensors"
+					weights		0.0 20.0 20.0 0.0
+				}
+				weights
+				{
+					input		"heat sensors"
+					weights		10.0 0.0 0.0 10.0
+				}
+				weights
+				{
+					input		"oxygen sensors"
+					weights		-20.0 0.0 0.0 -20.0
+				}
+				weights
+				{
+					input		"organic sensors"
+					weights		-20.0 0.0 0.0 -20.0
+				}
+				weights
+				{
+					input		"blue vehicle sensors"
+					weights		0.0 -20.0 -20.0 0.0
+				}
+				weights
+				{
+					input		"red vehicle sensors"
+					weights		40.0 0.0 0.0 40.0
+				}
+			}
+			
+			drive
+			{
+				input "brains"
+				gain 1.0
+				lateral_grip "false"
+				place_at
+				{
+					position	-0.5 -0.5
+					angle		0.0
+				}
+				place_at
+				{
+					position	-0.5 0.5
+					angle		0.0
+				}
+			}
+			place_at
+			{
+				position 0.0 10.0
+				angle -90.0
+			}
+			place_at
+			{
+				position 5.0 0.0
+				angle 0.0
+			}
+			place_at
+			{
+				position 0.0 -40.0
+				angle 90.0
+			}
+			place_at
+			{
+				position -20.0 -20.0
+				angle 90.0
+			}
+		}
+		vehicle
+		{
+			size	0.5
+			mass	1.0
+			viscous_friction 1.0
+			Coulomb_friction 0.0
+			colour 1.0 0.0 0.0
+			sensor
+			{
+				name "heat sensors"
+				mode "light"
+				colour 1.0 0.0 0.0
+				place_at
+				{
+					position	0.25 -0.25 0.25
+				}
+				place_at
+				{
+					position	0.25 0.25 0.25
+				}
+			}
+
+			sensor
+			{
+				name "oxygen sensors"
+				mode "light"
+				colour 0.0 0.0 1.0
+				place_at
+				{
+					position	0.25 -0.25 0.25
+				}
+				place_at
+				{
+					position	0.25 0.25 0.25
+				}
+			}
+
+			sensor
+			{
+				name "vehicle sensors"
+				mode "vehicle"
+				colour 0.5 0.5 1.0
+				width 0.0
+				place_at
+				{
+					position	0.25 -0.25 0.25
+				}
+				place_at
+				{
+					position	0.25 0.25 0.25
+				}
+			}
+
+			brain
+			{
+				name "brains"
+				num_outputs		2
+				bias			0.0 0.0
+				weights
+				{
+					input		"heat sensors"
+					weights		10.0 0.0 0.0 10.0
+				}
+				weights
+				{
+					input		"oxygen sensors"
+					weights		-15.0 15.0 15.0 -15.0
+				}
+				weights
+				{
+					input		"vehicle sensors"
+					weights		-50.0 100.0 100.0 -50.0
+				}
+			}
+			
+			drive
+			{
+				input "brains"
+				gain 1.0
+				lateral_grip "false"
+				place_at
+				{
+					position	-0.25 -0.25
+					angle		0.0
+				}
+				place_at
+				{
+					position	-0.25 0.25
+					angle		0.0
+				}
+			}
+			place_at
+			{
+				position -50.0 0.0
+				angle 0.0
+			}
+		}
+	}
+}
+			
+			
+
+
+

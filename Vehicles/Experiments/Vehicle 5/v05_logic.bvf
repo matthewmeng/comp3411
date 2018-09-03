@@ -1,0 +1,269 @@
+# Simulator configuration file for Vehicle 5
+
+simulation
+{
+	name				"Vehicle 5"
+#	win_size			1672 940
+	camera	-30.0 0.0 10.0 20.0 0.0
+	
+	#Create a field	
+	field
+	{
+		size 200.0
+		
+		light
+		{
+			colour 0.0 1.0 0.0
+			radius	0.8
+			brightness 25.0
+			attenuation "square"
+			place_at
+			{
+				position	0.0 3.0 2.0
+			}
+		}
+
+		light
+		{
+			colour 1.0 0.0 0.0
+			radius	0.8
+			brightness 25.0
+			attenuation "square"
+			place_at
+			{
+				position	0.0 -3.0 2.0
+			}
+		}
+
+		vehicle
+		{
+			size	2.0
+			mass	1.0
+			viscous_friction 1.0
+			Coulomb_friction 0.0
+			colour 1.0 0.0 0.0
+			sensor
+			{
+				name "red sensor"
+				mode "light"
+				colour 1.0 0.0 0.0
+				place_at
+				{
+					position	1.0 0.0 1.0
+				}
+			}
+
+			sensor
+			{
+				name "green sensor"
+				mode "light"
+				colour 0.0 1.0 0.0
+				place_at
+				{
+					position	1.0 0.0 1.0
+				}
+			}
+
+			brain
+			{
+				name			"OR"
+				num_outputs		1
+				unit_type		"threshold"
+				bias			-0.5
+				weights
+				{
+					input		"red sensor"
+					weights		1
+				}
+				weights
+				{
+					input		"green sensor"
+					weights		1
+				}
+			}
+	
+			
+			drive
+			{
+				gain 5
+				input		 "OR"
+				lateral_grip "false"
+				place_at
+				{
+					position	-1.0 0.0
+					angle		0.0
+				}
+			}
+
+			place_at
+			{
+				position -20.0 5.0
+				angle 0.0
+			}
+			
+		}
+		vehicle
+		{
+			size	2.0
+			mass	1.0
+			viscous_friction 1.0
+			Coulomb_friction 0.0
+			colour 0.0 1.0 0.0
+			sensor
+			{
+				name "red sensor"
+				mode "light"
+				colour 1.0 0.0 0.0
+				place_at
+				{
+					position	1.0 0.0 1.0
+				}
+			}
+
+			sensor
+			{
+				name "green sensor"
+				mode "light"
+				colour 0.0 1.0 0.0
+				place_at
+				{
+					position	1.0 0.0 1.0
+				}
+			}
+
+			brain
+			{
+				name			"AND"
+				num_outputs		1
+				unit_type		"threshold"
+				bias			-1.5
+				weights
+				{
+					input		"red sensor"
+					weights		1
+				}
+				weights
+				{
+					input		"green sensor"
+					weights		1
+				}
+			}
+	
+			
+			drive
+			{
+				gain 5
+				input		 "AND"
+				lateral_grip "false"
+				place_at
+				{
+					position	-1.0 0.0
+					angle		0.0
+				}
+			}
+
+			place_at
+			{
+				position -20.0 0.0
+				angle 0.0
+			}
+			
+		}		
+
+		vehicle
+		{
+			size	2.0
+			mass	1.0
+			viscous_friction 1.0
+			Coulomb_friction 0.0
+			colour 1.0 1.0 0.0
+			sensor
+			{
+				name "red sensor"
+				mode "light"
+				colour 1.0 0.0 0.0
+				place_at
+				{
+					position	1.0 0.0 1.0
+				}
+			}
+
+			sensor
+			{
+				name "green sensor"
+				mode "light"
+				colour 0.0 1.0 0.0
+				place_at
+				{
+					position	1.0 0.0 1.0
+				}
+			}
+
+			brain
+			{
+				name			"IN"
+				num_outputs		1
+				unit_type		"threshold"
+				bias			-1.5
+				weights
+				{
+					input		"red sensor"
+					weights		1
+				}
+				weights
+				{
+					input		"green sensor"
+					weights		1
+				}
+			}
+
+			brain
+			{
+				name			"XOR"
+				num_outputs		1
+				unit_type		"threshold"
+				bias			-0.5
+				weights
+				{
+					input		"red sensor"
+					weights		1
+				}
+				weights
+				{
+					input		"green sensor"
+					weights		1
+				}
+				weights
+				{
+					input		"IN"
+					weights		-2
+				}
+			}
+	
+			
+			drive
+			{
+				gain 5
+				input		 "XOR"
+				lateral_grip "false"
+				place_at
+				{
+					position	-1.0 0.0
+					angle		0.0
+				}
+			}
+
+			place_at
+			{
+				position -20.0 -5.0
+				angle 0.0
+			}
+			
+		}
+	}
+}
+			
+			
+
+
+
